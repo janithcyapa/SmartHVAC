@@ -1,0 +1,76 @@
+Data,Unit,Definition
+T_Stair_101,Deg C,1st floor staircase_Indoor air temperature
+T_Room_102,Deg C,Room 102_Indoor air temperature
+T_Room_103,Deg C,Room 103_Indoor air temperature
+T_Room_104,Deg C,Room 104_Indoor air temperature
+T_Room_105,Deg C,Room 105_Indoor air temperature
+T_Room_106,Deg C,Room 106_Indoor air temperature
+T_Stair_201,Deg C,2nd floor staircase_Indoor air temperature
+T_Room_202,Deg C,Room 202_Indoor air temperature
+T_Room_203,Deg C,Room 203_Indoor air temperature
+T_Room_204,Deg C,Room 204_Indoor air temperature
+T_Room_205,Deg C,Room 205_Indoor air temperature
+T_Room_206,Deg C,Room 206_Indoor air temperature
+RH_Stair_101,%,Room 101_Indoor air relative humidity
+RH_Room_102,%,Room 102_Indoor air relative humidity
+RH_Room_103,%,Room 103_Indoor air relative humidity
+RH_Room_104,%,Room 104_Indoor air relative humidity
+RH_Room_105,%,Room 105_Indoor air relative humidity
+RH_Room_106,%,Room 106_Indoor air relative humidity
+RH_Stair_201,%,Room 201_Indoor air relative humidity
+RH_Room_202,%,Room 202_Indoor air relative humidity
+RH_Room_203,%,Room 203_Indoor air relative humidity
+RH_Room_204,%,Room 204_Indoor air relative humidity
+RH_Room_205,%,Room 205_Indoor air relative humidity
+RH_Room_206,%,Room 206_Indoor air relative humidity
+T_Sup_RTU,Deg C,RTU supply air temperature
+RH_Sup_RTU,%,RTU supply air relative humidity
+T_Ret_RTU,Deg C,Return air temperature
+RH_Ret_RTU,%,Return air relative humidity
+T_VAV_102,Deg C,VAV 102 supply air temperature
+T_VAV_103,Deg C,VAV 103 supply air temperature
+T_VAV_104,Deg C,VAV 104 supply air temperature
+T_VAV_105,Deg C,VAV 105 supply air temperature
+T_VAV_106,Deg C,VAV 106 supply air temperature
+T_VAV_202,Deg C,VAV 202 supply air temperature
+T_VAV_203,Deg C,VAV 203 supply air temperature
+T_VAV_204,Deg C,VAV 204 supply air temperature
+T_VAV_205,Deg C,VAV 205 supply air temperature
+T_VAV_206,Deg C,VAV 206 supply air temperature
+RH_VAV_102,%,VAV 102 supply air relative humidity
+RH_VAV_103,%,VAV 103 supply air relative humidity
+RH_VAV_104,%,VAV 104 supply air relative humidity
+RH_VAV_105,%,VAV 105 supply air relative humidity
+RH_VAV_106,%,VAV 106 supply air relative humidity
+RH_VAV_202,%,VAV 202 supply air relative humidity
+RH_VAV_203,%,VAV 203 supply air relative humidity
+RH_VAV_204,%,VAV 204 supply air relative humidity
+RH_VAV_205,%,VAV 205 supply air relative humidity
+RH_VAV_206,%,VAV 206 supply air relative humidity
+WH_RTU_Total,Wh,RTU total energy consumption
+WH_RTU_Comp1,Wh,RTU Compressor_1 energy consumption
+WH_RTU_Comp2,Wh,RTU Compressor_2 energy consumption
+WH_RTU_Cond1,Wh,RTU Condenser_1 enrgy consumption
+WH_RTU_Cond2,Wh,RTU Condenser_2 enrgy consumption
+WH_RTU_Sup_Fan,Wh,RTU Supply fan energy consumption
+WH_RTU_VAV102,Wh,VAV 102 energy consumption
+WH_RTU_VAV103,Wh,VAV 103 energy consumption
+WH_RTU_VAV104,Wh,VAV 104 energy consumption
+WH_RTU_VAV105,Wh,VAV 105 energy consumption
+WH_RTU_VAV106,Wh,VAV 106 energy consumption
+WH_RTU_VAV202,Wh,VAV 202 energy consumption
+WH_RTU_VAV203,Wh,VAV 203 energy consumption
+WH_RTU_VAV204,Wh,VAV 204 energy consumption
+WH_RTU_VAV205,Wh,VAV 205 energy consumption
+WH_RTU_VAV206,Wh,VAV 206 energy consumption
+AF_RTU,m3/s,RTU supply airflow rate
+AF_VAV_102,m3/s,VAV 102 supply airflow rate
+AF_VAV_103,m3/s,VAV 103 supply airflow rate
+AF_VAV_104,m3/s,VAV 104 supply airflow rate
+AF_VAV_105,m3/s,VAV 105 supply airflow rate
+AF_VAV_106,m3/s,VAV 106 supply airflow rate
+AF_VAV_202,m3/s,VAV 202 supply airflow rate
+AF_VAV_203,m3/s,VAV 203 supply airflow rate
+AF_VAV_204,m3/s,VAV 204 supply airflow rate
+AF_VAV_205,m3/s,VAV 205 supply airflow rate
+AF_VAV_206,m3/s,VAV 206 supply airflow rate

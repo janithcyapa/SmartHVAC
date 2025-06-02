@@ -1,0 +1,9 @@
+Data,Unit,Definition
+T_out,Deg C,Outdoor air temperature
+RH_out,%,Outdoor air relative humidity
+BP,Pa,Barometric pressure
+Dir_Solar,W/m2,Direct solar radiation
+Dif_Solar,W/m2,Diffuse solar radiation
+Glo_Solar,W/m2,Gobal solar radiation
+WS,m/s,Wind speed
+WD,Deg,Wind direction
