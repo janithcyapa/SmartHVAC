@@ -1,0 +1,179 @@
+\documentclass[12pt]{article}
+
+% Setting up the page geometry
+\usepackage[margin=1in]{geometry}
+
+% Including essential packages for mathematical typesetting
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+
+% Adding support for units
+\usepackage{siunitx}
+\sisetup{per-mode=symbol}
+
+% Including packages for better formatting
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{enumitem}
+
+% Adding support for graphics and tables
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{caption}
+
+% Ensuring proper font encoding
+\usepackage[T1]{fontenc}
+\usepackage{times}
+
+% Adding hyperref for links (configured to avoid colored boxes)
+\usepackage[hidelinks]{hyperref}
+
+% Defining the title and author
+\title{HVAC System Calculation for Room Air Conditioning}
+\author{Student Name}
+\date{June 11, 2025}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+This document presents the calculations for an HVAC system designed to maintain desired air conditions in a room. The calculations include control signals, room configuration, weather data, air handling unit (AHU) configuration, and the simulation of air conditions through various processes (cooling coil, fan heat addition, heating coil, and final room conditions). All calculations are performed at standard atmospheric pressure (\SI{101325}{\pascal}) unless otherwise specified.
+
+\section{Parameters}
+
+\subsection{Control Signals}
+\begin{itemize}
+    \item Air flow control: \( \text{Control}_{\text{Air, AF}} = 0.5 \)
+    \item Ventilation control: \( \text{Control}_{\text{Vent, AF}} = 0.1 \)
+    \item Cooling power control: \( \text{Control}_{\text{Cooling, PW}} = 0.9 \)
+    \item Heating power control: \( \text{Control}_{\text{Heating, PW}} = 0.1 \)
+\end{itemize}
+
+\subsection{Room Configuration}
+\begin{itemize}
+    \item Simulation time step: \( \Delta t = \SI{600}{\second} \)
+    \item Number of occupants: \( N_{\text{Occ}} = 3 \)
+    \item Sensible heat from equipment/lights: \( Q_{\text{Equ}} = \SI{500}{\watt} \)
+    \item Initial room temperature: \( T_{\text{room}} = \SI{25}{\celsius} \)
+    \item Initial relative humidity: \( \text{RH}_{\text{room}} = 0.5 \)
+    \item Atmospheric pressure: \( P_{\text{air}} = \SI{101325}{\pascal} \)
+    \item Room dimensions: Length \( L_{\text{room}} = \SI{5}{\meter} \), Width \( W_{\text{room}} = \SI{4}{\meter} \), Height \( H_{\text{room}} = \SI{2.5}{\meter} \)
+    \item Window area: \( A_{\text{window}} = \SI{4}{\meter\squared} \)
+    \item Wall area: \( A_{\text{wall}} = (L_{\text{room}} + W_{\text{room}}) \cdot H_{\text{room}} - A_{\text{window}} = \SI{18.5}{\meter\squared} \)
+    \item Room volume: \( V_{\text{room}} = L_{\text{room}} \cdot W_{\text{room}} \cdot H_{\text{room}} = \SI{50}{\meter\cubed} \)
+\end{itemize}
+
+\subsection{Room Conditions}
+Using psychrometric functions:
+\begin{itemize}
+    \item Humidity ratio: \( W_{\text{room}} = \text{GetHumRatioFromRelHum}(T_{\text{room}}, \text{RH}_{\text{room}}, P_{\text{air}}) \approx \SI{0.00993}{\kilo\gram\per\kilo\gram} \)
+    \item Enthalpy: \( h_{\text{room}} = \text{GetMoistAirEnthalpy}(T_{\text{room}}, W_{\text{room}}) \approx \SI{50469}{\joule\per\kilo\gram} \)
+    \item Latent heat of vaporization: \( h_{\text{fg, room}} = \SI{2441000}{\joule\per\kilo\gram} \)
+    \item Air density: \( \rho_{\text{air}} = \text{GetMoistAirDensity}(T_{\text{room}}, W_{\text{room}}, P_{\text{air}}) \approx \SI{1.184}{\kilo\gram\per\meter\cubed} \)
+    \item Specific heat of moist air: \( C_{p,\text{Air}} = \SI{1005}{\joule\per\kilo\gram\per\kelvin} \)
+\end{itemize}
+
+\subsection{Weather Data}
+\begin{itemize}
+    \item Outside temperature: \( T_{\text{out}} = \SI{35}{\celsius} \)
+    \item Outside relative humidity: \( \text{RH}_{\text{out}} = 0.7 \)
+    \item Outside humidity ratio: \( W_{\text{out}} = \text{GetHumRatioFromRelHum}(T_{\text{out}}, \text{RH}_{\text{out}}, P_{\text{air}}) \approx \SI{0.0251}{\kilo\gram\per\kilo\gram} \)
+\end{itemize}
+
+\subsection{AHU Configuration}
+\begin{itemize}
+    \item Maximum airflow rate: \( \text{Max}_{\text{Air, FR}} = \SI{0.1}{\meter\cubed\per\second} \)
+    \item Fan power: \( P_{\text{fan}} = \SI{5.0}{\watt} \)
+    \item Maximum ventilation airflow rate: \( \text{Max}_{\text{Vent, FR}} = \SI{0.1}{\meter\cubed\per\second} \)
+    \item Maximum cooling power: \( \text{Max}_{\text{Cooling, PW}} = \SI{2500}{\watt} \)
+    \item Maximum heating power: \( \text{Max}_{\text{Heating, PW}} = \SI{1000}{\watt} \)
+\end{itemize}
+
+\subsection{Calculated Parameters}
+\begin{itemize}
+    \item Airflow rate: \( \text{Air}_{\text{AF}} = \text{Max}_{\text{Air, FR}} \cdot \text{Control}_{\text{Air, AF}} = \SI{0.05}{\meter\cubed\per\second} \)
+    \item Ventilation airflow rate: \( \text{Vent}_{\text{AF}} = \text{Max}_{\text{Vent, FR}} \cdot \text{Control}_{\text{Vent, AF}} = \SI{0.01}{\meter\cubed\per\second} \)
+    \item Cooling power: \( \text{Cooling}_{\text{PW}} = \text{Max}_{\text{Cooling, PW}} \cdot \text{Control}_{\text{Cooling, PW}} = \SI{2250}{\watt} \)
+    \item Heating power: \( \text{Heating}_{\text{PW}} = \text{Max}_{\text{Heating, PW}} \cdot \text{Control}_{\text{Heating, PW}} = \SI{100}{\watt} \)
+\end{itemize}
+
+\subsection{Standard Definitions}
+\begin{itemize}
+    \item Sensible heat per occupant: \( Q_{S,\text{Per Occ}} = 200 \cdot 0.293 = \SI{58.6}{\watt} \)
+    \item Latent heat per occupant: \( Q_{L,\text{Per Occ}} = 180 \cdot 0.293 = \SI{52.74}{\watt} \)
+    \item Other latent heat sources: \( Q_{L,\text{Other}} = \SI{0}{\watt} \)
+    \item Wall U-value: \( U_{\text{wall}} = \SI{0.284}{\watt\per\meter\squared\per\kelvin} \)
+    \item Window U-value: \( U_{\text{window}} = \SI{1.987}{\watt\per\meter\squared\per\kelvin} \)
+\end{itemize}
+
+\section{Calculations}
+
+\subsection{Total Room Sensible and Latent Heat Loads}
+\begin{align}
+    Q_{S,\text{envelope}} &= U_{\text{wall}} \cdot A_{\text{wall}} \cdot (T_{\text{out}} - T_{\text{room}}) + U_{\text{window}} \cdot A_{\text{window}} \cdot (T_{\text{out}} - T_{\text{room}}) \notag \\
+    &= 0.284 \cdot 18.5 \cdot (35 - 25) + 1.987 \cdot 4 \cdot (35 - 25) \approx \SI{132.09}{\watt} \\
+    Q_{S,\text{total}} &= Q_{S,\text{Per Occ}} \cdot N_{\text{Occ}} + Q_{\text{Equ}} + Q_{S,\text{envelope}} \notag \\
+    &= 58.6 \cdot 3 + 500 + 132.09 \approx \SI{807.89}{\watt} \\
+    Q_{L,\text{total}} &= Q_{L,\text{Per Occ}} \cdot N_{\text{Occ}} + Q_{L,\text{Other}} \notag \\
+    &= 52.74 \cdot 3 + 0 \approx \SI{158.22}{\watt}
+\end{align}
+
+\subsection{Mixed Air Conditions}
+\begin{align}
+    T_{\text{MA}} &= \frac{\text{Vent}_{\text{AF}} \cdot T_{\text{out}} + (\text{Air}_{\text{AF}} - \text{Vent}_{\text{AF}}) \cdot T_{\text{room}}}{\text{Air}_{\text{AF}}} \notag \\
+    &= \frac{0.01 \cdot 35 + (0.05 - 0.01) \cdot 25}{0.05} \approx \SI{27}{\celsius} \\
+    W_{\text{MA}} &= \frac{\text{Vent}_{\text{AF}} \cdot W_{\text{out}} + (\text{Air}_{\text{AF}} - \text{Vent}_{\text{AF}}) \cdot W_{\text{room}}}{\text{Air}_{\text{AF}}} \notag \\
+    &= \frac{0.01 \cdot 0.0251 + (0.05 - 0.01) \cdot 0.00993}{0.05} \approx \SI{0.01245}{\kilo\gram\per\kilo\gram} \\
+    \text{RH}_{\text{MA}} &= \text{GetRelHumFromHumRatio}(T_{\text{MA}}, W_{\text{MA}}, P_{\text{air}}) \approx 0.593 \\
+    h_{\text{MA}} &= \text{GetMoistAirEnthalpy}(T_{\text{MA}}, W_{\text{MA}}) \approx \SI{58985}{\joule\per\kilo\gram}
+\end{align}
+
+\subsection{Cooling Coil Process}
+\begin{align}
+    h_{\text{Coil}} &= h_{\text{MA}} - \frac{\text{Cooling}_{\text{PW}}}{\rho_{\text{air}} \cdot \text{Air}_{\text{AF}}} \notag \\
+    &= 58985 - \frac{2250}{1.184 \cdot 0.05} \approx \SI{20944}{\joule\per\kilo\gram}
+\end{align}
+Assuming saturation (\( \text{RH}_{\text{Coil}} = 1.0 \)), the temperature \( T_{\text{Coil}} \) is found iteratively such that \( h(T_{\text{Coil}}, W_{\text{Coil}}) \approx h_{\text{Coil}} \). Results:
+\begin{itemize}
+    \item \( T_{\text{Coil}} \approx \SI{8.45}{\celsius} \)
+    \item \( W_{\text{Coil}} \approx \SI{0.00708}{\kilo\gram\per\kilo\gram} \)
+    \item \( \text{RH}_{\text{Coil}} \approx 1.0 \)
+    \item \( T_{\text{dew}} = \text{GetTDewPointFromRelHum}(T_{\text{Coil}}, \text{RH}_{\text{Coil}}) \approx \SI{8.45}{\celsius} \)
+\end{itemize}
+
+\subsection{Fan Heat Addition}
+\begin{align}
+    \Delta T_{\text{fan}} &= \frac{P_{\text{fan}}}{\rho_{\text{air}} \cdot C_{p,\text{Air}} \cdot \text{Air}_{\text{AF}}} \notag \\
+    &= \frac{5.0}{1.184 \cdot 1005 \cdot 0.05} \approx \SI{0.084}{\celsius} \\
+    T_{\text{fan}} &= T_{\text{Coil}} + \Delta T_{\text{fan}} \approx \SI{8.53}{\celsius} \\
+    W_{\text{fan}} &= W_{\text{Coil}} \approx \SI{0.00708}{\kilo\gram\per\kilo\gram} \\
+    \text{RH}_{\text{fan}} &= \text{GetRelHumFromHumRatio}(T_{\text{fan}}, W_{\text{fan}}, P_{\text{air}}) \approx 0.993 \\
+    h_{\text{fan}} &= \text{GetMoistAirEnthalpy}(T_{\text{fan}}, W_{\text{fan}}) \approx \SI{21029}{\joule\per\kilo\gram}
+\end{align}
+
+\subsection{Heating Coil Process}
+\begin{align}
+    T_{\text{Out}} &= T_{\text{fan}} + \frac{\text{Heating}_{\text{PW}}}{\rho_{\text{air}} \cdot C_{p,\text{Air}} \cdot \text{Air}_{\text{AF}}} \notag \\
+    &= 8.53 + \frac{100}{1.184 \cdot 1005 \cdot 0.05} \approx \SI{10.71}{\celsius} \\
+    W_{\text{Out}} &= W_{\text{fan}} \approx \SI{0.00708}{\kilo\gram\per\kilo\gram} \\
+    \text{RH}_{\text{Out}} &= \text{GetRelHumFromHumRatio}(T_{\text{Out}}, W_{\text{Out}}, P_{\text{air}}) \approx 0.814 \\
+    h_{\text{Out}} &= \text{GetMoistAirEnthalpy}(T_{\text{Out}}, W_{\text{Out}}) \approx \SI{28772}{\joule\per\kilo\gram}
+\end{align}
+
+\subsection{Final Room Air Conditions}
+Assuming a well-mixed room with continuous air exchange:
+\begin{align}
+    T_{\text{final}} &= T_{\text{Out}} + \frac{Q_{S,\text{total}}}{\rho_{\text{air}} \cdot C_{p,\text{Air}} \cdot \text{Air}_{\text{AF}}} + \left( T_{\text{room}} - T_{\text{Out}} - \frac{Q_{S,\text{total}}}{\rho_{\text{air}} \cdot C_{p,\text{Air}} \cdot \text{Air}_{\text{AF}}} \right) \cdot e^{-\frac{\text{Air}_{\text{AF}}}{V_{\text{room}}} \cdot \Delta t} \notag \\
+    &\approx \SI{24.74}{\celsius} \\
+    W_{\text{final}} &= W_{\text{Out}} + \frac{Q_{L,\text{total}}}{\rho_{\text{air}} \cdot h_{\text{fg, room}} \cdot \text{Air}_{\text{AF}}} + \left( W_{\text{room}} - W_{\text{Out}} - \frac{Q_{L,\text{total}}}{\rho_{\text{air}} \cdot h_{\text{fg, room}} \cdot \text{Air}_{\text{AF}}} \right) \cdot e^{-\frac{\text{Air}_{\text{AF}}}{V_{\text{room}}} \cdot \Delta t} \notag \\
+    &\approx \SI{0.00881}{\kilo\gram\per\kilo\gram} \\
+    \text{RH}_{\text{final}} &= \text{GetRelHumFromHumRatio}(T_{\text{final}}, W_{\text{final}}, P_{\text{air}}) \approx 0.462 \\
+    h_{\text{final}} &= \text{GetMoistAirEnthalpy}(T_{\text{final}}, W_{\text{final}}) \approx \SI{47177}{\joule\per\kilo\gram}
+\end{align}
+
+\section{Conclusion}
+The HVAC system maintains the room temperature at approximately \SI{24.74}{\celsius} with a relative humidity of 0.462 after \SI{600}{\second} of operation. The calculations demonstrate the system's ability to handle sensible and latent heat loads effectively.
+
+\end{document}
