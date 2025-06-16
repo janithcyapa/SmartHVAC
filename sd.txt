@@ -1,0 +1,58 @@
+Parameters
+Q_S_Per_Occ: 58.599999999999994 W
+Q_L_Per_Occ: 52.739999999999995 W
+W_room: 0.009881043690749623 kg water/kg dry air
+h_room: 50321.958802184665 J/kg
+h_fg_room: 2441000 J/kg
+p_air: 1.17695818641638 kg/m^3
+Cp_Air: 1005 kJ/kg-K
+
+Total Room Sensible and Latent Heat Loads
+Q_S_envelope: 132.01999999999998 W
+Q_S_total: 807.8199999999999 W
+Q_L_total: 158.21999999999997 W
+
+Room air
+T_room: 25 °C
+W_room: 0.009881043690749623 kg water/kg dry air
+RH_room: 0.5
+hg_room: 50321.958802184665 J/kg
+
+Mixed Air Dry-bulb Temperature (T_MA)
+T_MA: 27.0 °C
+W_MA: 0.012936662590369461 kg water/kg dry air
+RH_MA: 0.5787686569624064
+h_MA: 60166.27233380238 J/kg
+
+Air Condition After Cooling Coil
+T_Coil: 6.609999999999966 °C
+W_Coil: 0.006045676287111269 kg water/kg dry air
+RH_Coil: 1.0
+h_Coil: 21932.118801962242 J/kg
+T_dew: 6.609999999999966 °C
+
+Fan Heat Addition (for Draw-Through AHU)
+ΔT_fan: 0.0845420752500611 °C
+
+T_fan: 6.694542075250027 °C
+W_fan: 0.006045676287111269 kg water/kg dry air
+RH_fan: 0.9941987774684806
+h_fan: 21930.22556552279 J/kg
+
+Simulate Heating Coil Process and Determine Final Supply Air Conditions
+T_Out: 8.385383580251249 °C
+W_Out: 0.006045676287111269 kg water/kg dry air
+RH_Out: 0.885720043792606
+h_Out: 23650.22556108323 J/kg
+
+Simulate Final Air Temp
+T_final: 23.666440341333946 °C
+W_final: 0.008647529424462449 kg water/kg dry air
+RH_final: 0.474908682115554
+h_final: 45816.57067891912 J/kg
+
+Energy Consumption
+Fan Energy: 0.000833 kWh
+Cooling Energy: 0.375000 kWh
+Heating Energy: 0.016667 kWh
+Total Energy: 0.392500 kWh
